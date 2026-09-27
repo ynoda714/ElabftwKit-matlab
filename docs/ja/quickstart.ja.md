@@ -1,5 +1,5 @@
 ---
-tracks_english_commit: "7c48162"
+tracks_english_commit: "424dbf0"
 ---
 
 > この日本語訳は英語版より古い場合があります。最新の情報は対応する英語版を参照してください。
@@ -29,6 +29,9 @@ tracks_english_commit: "7c48162"
    対応する設定値と 1 文字も違わず一致しなければなりません。
    Resource status は事前に作成しないでください。Section 1 が、不足している 5 つの
    定義と色を作成します。
+   `elab.pipeline.bootstrapStructure` を使うと、この item bootstrap より前に、設定した
+   category と Draft experiment status を作成できます。セットアップの詳細は
+   [eLabFTW 情報設計](../elab_structure.md)にあります。
    Resource category の名前は `elab.instrument_category`、`sample_category`、
    `consumable_category`、`sop_category` で設定します。
 3. プロジェクトルートで設定と 4 つのマスターデータ例をコピーします。
@@ -37,12 +40,14 @@ tracks_english_commit: "7c48162"
    Copy-Item config\settings.example.json config\settings.json
    Copy-Item data\list\instruments.example.csv data\list\instruments.csv
    Copy-Item data\list\consumables.example.csv data\list\consumables.csv
+   Copy-Item data\list\instrument_map.example.csv data\list\instrument_map.csv
    Copy-Item data\list\sample_map.example.csv data\list\sample_map.csv
    Copy-Item data\list\qc_specs.example.csv data\list\qc_specs.csv
    ```
 
-   Section 0b は、コピー先がない場合に限り `sample_map.example.csv` から
-   `sample_map.csv` を、`qc_specs.example.csv` から `qc_specs.csv` をコピーします。
+   Section 0b は、コピー先がない場合に限り `instrument_map.example.csv` から
+   `instrument_map.csv` を、`sample_map.example.csv` から `sample_map.csv` を、
+   `qc_specs.example.csv` から `qc_specs.csv` をコピーします。
    instruments と consumables のリストはコピーしません。
 4. サーバーに合うように `config/settings.json` を編集します。`elab.base_url`、
    `elab.ca_cert`（ローカル環境では `docker/certs/server.crt`）、Category name、
@@ -117,11 +122,18 @@ F5 を押すと、ファイルに並んだすべての section を 1 回ずつ�
   繰り返し生成した内容は同一ですが、別の日に生成すると内容が変わり、新しい測定として
   記録されます。
 - 最初の Section 3 では、6 件の Draft Session experiment を作ります。
-  それぞれに quick-look 図を添付します。既定の `auto` では 25 MB 以下の
-  raw ファイルも添付し、各 experiment の本文にも quick-look 図を表示します。
-  `sample_map.csv` に一致すれば、
-  experiment を Instrument と Sample に link し、Instrument 台帳と Consumable
-  在庫を更新します。既定では処理済みファイルを `data/processed/` に移動し、その隣に
+  それぞれに quick-look 図を添付し、既定の `auto` では 25 MB 以下の
+  raw ファイルも添付します。quick-look 図は各 experiment の本文にも表示されます。
+  custom field は Measurement、Instrument parameters、Provenance の見出しでまとまり、
+  最初の group が Session の概要を、Provenance が kit・MATLAB・parser・preview の設定を
+  記録します。
+  `instrument_map.csv` は安定したファイルパターンを個別の Instrument に、`sample_map.csv` は
+  測定パターンを Sample にそれぞれ束縛します。2 つの Instrument が同じ技法を使う場合は、
+  装置固有の prefix やフォルダ名など、区別できる部分文字列を使ってください。
+  record はどちらか一方の束縛だけを持つこともできます。Instrument だけの record は台帳を
+  更新し、Sample だけの record は更新しません。曖昧な一致は link しません。
+  `instrument_title` を使う旧形式の sample map は、移行の間、警告付きで受け付けられます。
+  既定では処理済みファイルを `data/processed/` に移動し、その隣に
   再構築用 sidecar を書きます。同名ファイルは上書きせず timestamp suffix を付けます。
   `copy` は inbox の原本を残し、`leave` は sidecar を run directory に書いて入力ファイルを
   変更しません。同じファイルをもう一度入れると、Session category 内に `data_file_hash` がすでに存在する
@@ -153,6 +165,36 @@ F5 を押すと、ファイルに並んだすべての section を 1 回ずつ�
 Section 4 は意図的に異なり、実行するたびに Report experiment が 1 件増えます。
 
 MATLAB が生成する eLabFTW entry はすべて、人が確認するための Draft です。
+
+## NMR 実験フォルダを記録する
+
+Bruker の 1 次元 experiment フォルダを 1 つ `data/inbox/` に置きます。フォルダ自体が
+1 件の測定であり、`acqus` と `fid` を含む必要があります。`ser` を含むフォルダは
+2 次元データであり、対応していないため `data/failed/` に移動されます。
+
+オフラインで試すための合成フォルダを作るには、次を実行します。
+
+```matlab
+addpath(genpath("src"));
+folderPath = elab.io.writeMockNmrRun("data/inbox");
+```
+
+この例は合成データだけを作成します。実データを使うことも配布することもありません。
+
+対応するフォルダでは、`##$DATE` から取得した測定日時を使い、有効な audit 由来の
+所要時間が 1 つに定まらない場合は、取得設定から計算した所要時間を source
+`calculated` として記録します。フォルダ全体の hash を、原本を変えずに記録し、
+quick-look 図と、AnyNMR の版・処理条件を含む `provenance.json` を作成します。
+provenance file には timestamp・利用者名・path を含めません。フォルダ自体は
+添付されず、代わりに元の場所と hash が記録されます。
+
+AnyNMR の処理が失敗した場合は、警告付きで記録は続きますが、preview と
+`provenance.json` は作られません。Instrument と Sample の束縛には、
+[期待される結果](#期待される結果)にある既存の `instrument_map.csv` と
+`sample_map.csv` の説明を使ってください。実サーバへの NMR 記録の書き込みは、
+実 experiment フォルダで確認済みです（[Verification Record](../verification.md#nmr-folders-live)）。
+実機の接続は未確認です。実行した MATLAB の版とプラットフォームは
+[Platform Support](../platform_support.md) を参照してください。
 
 ## API を直接呼ぶ
 

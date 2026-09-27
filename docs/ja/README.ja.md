@@ -26,7 +26,7 @@ eLabFTW もネットワーク接続も必要ありません。
 
 MATLAB R2022a 以降と eLabFTW インスタンスが必要です。MATLAB のアドオンは不要です。
 対応する接続経路は eLabFTW 5.6.12 で確認されています。サーバー設定、configuration、
-最初の記録実行については [Quick Start](../quickstart.md) を参照してください。
+最初の記録実行については [Quick Start](quickstart.ja.md) を参照してください。
 
 ## 現在利用できる機能
 
@@ -61,7 +61,7 @@ MATLAB R2022a 以降と eLabFTW インスタンスが必要です。MATLAB の�
 
 | 文書 | 目的 |
 |---|---|
-| [Quick Start](../quickstart.md) | サーバーを設定し、提供されたワークフローを実行します。 |
+| [Quick Start](quickstart.ja.md) | サーバーを設定し、提供されたワークフローを実行します。 |
 | [Assembly Guide](../assembly_guide.md) | 提供された部品からワークフローを選択または組み立てます。 |
 | [eLabFTW Structure](../elab_structure.md) | 必要なカテゴリ、フィールド、アイテムを設定します。 |
 | [Function Reference](../function_reference.md) | 公開された MATLAB 関数とオプションを調べます。 |
