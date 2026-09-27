@@ -1,0 +1,8 @@
+match_substring,sample_id,operator,project,consumable_title,consumable_qty
+SMP-2026-001,SMP-2026-001,operator-a,PRJ-A,,
+SMP-2026-002,SMP-2026-002,operator-b,PRJ-A,,
+SMP-2026-003,SMP-2026-003,operator-b,PRJ-B,,
+SMP-2026-004,SMP-2026-004,operator-c,PRJ-B,NMR tube 5mm,1
+SMP-2026-005,SMP-2026-005,operator-d,PRJ-C,LC column C18 injections,1
+SMP-2026-006,SMP-2026-006,operator-a,PRJ-C,,
+SMP-2026-007,SMP-2026-007,operator-a,PRJ-B,,

@@ -1,0 +1,56 @@
+name: ${ELABFTW_PROJECT_NAME:-docker}
+
+services:
+  web:
+    # Keep a readable version tag for planned upgrades; the digest records the exact verified build.
+    # Verified digest: sha256:db6f369e0593203ff2d3045671eaadceca60ccfefa5ef22a9b62f485d3cd4a4f
+    image: elabftw/elabimg:5.6.12
+    restart: unless-stopped
+    environment:
+      DISABLE_HTTPS: "false"
+      SITE_URL: https://localhost:${ELABFTW_PORT:-3148}
+      SERVER_NAME: localhost
+      ENABLE_LETSENCRYPT: "false"
+      DB_HOST: mysql
+      DB_PORT: "3306"
+      DB_NAME: elabftw
+      DB_USER: elabftw
+      DB_PASSWORD: ${ELABFTW_DB_PASSWORD}
+      SECRET_KEY: ${ELABFTW_SECRET_KEY}
+      TZ: Asia/Tokyo
+      PHP_TIMEZONE: Asia/Tokyo
+    ports:
+      - "${ELABFTW_PORT:-3148}:443"
+    volumes:
+      - uploads:/elabftw/uploads
+      - ./certs/server.crt:/etc/nginx/certs/server.crt:ro
+      - ./certs/server.key:/etc/nginx/certs/server.key:ro
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    # Keep a readable version tag for planned upgrades; the digest records the exact verified build.
+    # Verified digest: sha256:3466ba4a4828aa8d46fb7c3bc16b67b781c98413cf4ea0fac6feaa6e881faa26
+    image: mysql:8.4.11
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ELABFTW_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: elabftw
+      MYSQL_USER: elabftw
+      MYSQL_PASSWORD: ${ELABFTW_DB_PASSWORD}
+      TZ: Asia/Tokyo
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p\"$${MYSQL_ROOT_PASSWORD}\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+volumes:
+  uploads:
+    name: ${ELABFTW_UPLOADS_VOLUME:-elabftw-uploads}
+  mysql-data:
+    name: ${ELABFTW_MYSQL_VOLUME:-elabftw-mysql-data}

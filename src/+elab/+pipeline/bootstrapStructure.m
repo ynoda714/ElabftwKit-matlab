@@ -1,0 +1,26 @@
+function ids = bootstrapStructure(client, cfg)
+% bootstrapStructure  Ensure the configured categories and Draft status exist.
+
+    arguments
+        client
+        cfg (1,1) struct
+    end
+
+    ids = struct();
+    ids.session = elab.client.ensureCategory(client, "experiments_categories", ...
+        cfg.elab.session_category, color="29aeb9");
+    ids.qc = elab.client.ensureCategory(client, "experiments_categories", ...
+        cfg.elab.qc_category, color="f0ad4e");
+    ids.report = elab.client.ensureCategory(client, "experiments_categories", ...
+        cfg.elab.report_category, color="6f42c1");
+    ids.instrument = elab.client.ensureCategory(client, "resources_categories", ...
+        cfg.elab.instrument_category, color="0275d8");
+    ids.sample = elab.client.ensureCategory(client, "resources_categories", ...
+        cfg.elab.sample_category, color="5cb85c");
+    ids.consumable = elab.client.ensureCategory(client, "resources_categories", ...
+        cfg.elab.consumable_category, color="e07b39");
+    ids.sop = elab.client.ensureCategory(client, "resources_categories", ...
+        cfg.elab.sop_category, color="6c757d");
+    ids.draft = elab.client.ensureCategory(client, "experiments_status", ...
+        cfg.elab.draft_status, color="999999");
+end

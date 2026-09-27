@@ -1,0 +1,19 @@
+{
+  "name": "AnyNMR-matlab",
+  "url": "https://github.com/ynoda714/AnyNMR-matlab",
+  "tag": "v1.0.0",
+  "commit": "e9332b5aa154136961189617b16723a8e353ed61",
+  "license": "MIT",
+  "fetched": "2026-09-25",
+  "files": [
+    { "path": "+nmr/+io/loadBruker.m", "sha256": "bff37d8b7a40c05ec6c3f45a8d6c9e12ff803dec48d7c964adc6b3e2a34ffcd5" },
+    { "path": "+nmr/+io/validateNmrData.m", "sha256": "cd9a047dcfee87bf4d61b0e20bfd25cdad3e652ca1f4c32750d4b50ff60a03e4" },
+    { "path": "+nmr/+processing/autoPhase.m", "sha256": "9c18a00dcf61eb8dbe748c67bfa0c474c471e1277d461b40057958c62eb0ad97" },
+    { "path": "+nmr/+processing/correctPhase.m", "sha256": "3e91c60239e120c18432d73919e59be6f2fb9b42c1bfd4a42f562b9bf2da5b83" },
+    { "path": "+nmr/+processing/doFFT.m", "sha256": "135a5ed4ee5116e84f07a121c76ec91c1efc9d0fb00388608872ae6376ee9875" },
+    { "path": "+nmr/+util/calcAxes.m", "sha256": "6947b085d444a6a32b0a8618658d966f9a42ef832a95b8c8756ff1f6ee71f9ac" },
+    { "path": "+nmr/+util/log.m", "sha256": "50b582bacbc7736d18ba55deb567174267a9336c4ac25578f52d089be1dcc009" },
+    { "path": "+nmr/+util/nucleusTable.m", "sha256": "582eb64a3dddf5636e468614bf895372a7ada7d7217442a5e4baa4e886172cad" }
+  ],
+  "files_hash": "e6319557e89fd562bec6b4614edba237613e813db9a22343202d56e5f58b84dc"
+}

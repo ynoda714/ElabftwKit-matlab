@@ -1,0 +1,77 @@
+# .gitignore for public repository
+#
+# This template is used by scripts/sync_to_public.ps1 when initializing
+# the public repository. Copy this file to the public repo root as .gitignore.
+#
+# Key difference from the development .gitignore:
+#   - Internal AI assistant context files not copied at all by sync script
+#   - Development-only tools (tools/_*.py) not copied at all by sync script
+#   - Development logs (docs/dev_history*.md) not copied at all by sync script
+
+# ── Runtime artifacts ──────────────────────────────────────────────────
+# Keep the directory skeleton, but track none of its contents. The
+# "!result/*/" line is required: git cannot re-include a file inside a
+# directory that is itself excluded.
+result/**
+!result/*/
+!result/*/.gitkeep
+
+# ── Data artifacts ─────────────────────────────────────────────────────
+*.csv
+*.xlsx
+# User-specific master data is not tracked; the *.example.csv templates are.
+!data/list/*.example.csv
+
+# Instrument inbox / staging (runtime, not tracked)
+data/inbox/**
+data/processed/**
+data/failed/**
+!data/inbox/.gitkeep
+!data/processed/.gitkeep
+!data/failed/.gitkeep
+
+# ── User-local config (generated from settings.example.json) ──────────
+config/settings.json
+
+# ── MATLAB model/binary outputs ────────────────────────────────────────
+*.mat
+
+# ── Python ─────────────────────────────────────────────────────────────
+python_env/
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# ── Editor / OS ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── MATLAB temporary files ─────────────────────────────────────────────
+*.asv
+*.m~
+
+# ── Local secrets ──────────────────────────────────────────────────────
+config/apiKey.txt
+config/apikey.txt
+*.key
+*.secret
+docker/.env
+docker/certs/
+
+# ── Volume backups ─────────────────────────────────────────────────────
+docker/backup/
+
+# ── Exported server certificate ────────────────────────────────────────
+config/elabftw-server.crt
+
+# ── Temp work ──────────────────────────────────────────────────────────
+tmp/
+batch_tmp.txt
+test_result*.txt
+
+# ── Logs ───────────────────────────────────────────────────────────────
+logs/
+
+# ── Development-only tools ─────────────────────────────────────────────
+tools/_*

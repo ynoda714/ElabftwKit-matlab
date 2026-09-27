@@ -1,0 +1,78 @@
+{
+    "_comment": "Copy this file to config/settings.json and edit as needed.",
+    "_priority": "Environment variables > config/settings.json > defaults",
+    "_env_naming": "<PREFIX>_<SECTION>_<KEY> (e.g., ELAB_ELAB_BASE_URL). Prefix is ELAB, set in src/config/loadConfig.m.",
+    "_api_key": "The API key is NOT stored here. Set the env var named by elab.api_key_env, or put it in config/apiKey.txt (git-ignored).",
+
+    "elab": {
+        "_comment": "Experiment categories, resource categories, status, and label values must exactly match the names configured in eLabFTW. These English values are defaults; use the actual names from your eLabFTW instance in config/settings.json.",
+        "base_url": "https://localhost:3148",
+        "api_key_env": "ELAB_API_KEY",
+        "ca_cert": "",
+        "allow_self_signed": false,
+        "session_category": "Session",
+        "qc_category": "QC",
+        "report_category": "Report",
+        "instrument_category": "Instrument",
+        "sample_category": "Sample",
+        "consumable_category": "Consumable",
+        "sop_category": "SOP",
+        "draft_status": "Draft",
+        "extra_field_search_limit": 400,
+        "item_search_limit": 50,
+        "report_list_limit": 1000,
+        "timezone": "",
+        "labels": {
+            "qc_tag": "QC",
+            "instrument_status_ok": "OK",
+            "instrument_status_check": "Check",
+            "instrument_status_calibration_overdue": "CalibrationOverdue",
+            "consumable_status_ok": "InStock",
+            "consumable_status_reorder": "Reorder",
+            "field_group_measurement": "Measurement",
+            "field_group_instrument_params": "Instrument parameters",
+            "field_group_provenance": "Provenance"
+        }
+    },
+
+    "watch": {
+        "inbox_dir": "data/inbox",
+        "processed_dir": "data/processed",
+        "failed_dir": "data/failed",
+        "sample_map": "data/list/sample_map.csv",
+        "nominal_run_minutes": 10
+    },
+
+    "qc": {
+        "_comment": "Keep standard-sample acceptance criteria in the QC specification CSV.",
+        "inbox_dir": "data/qc_inbox",
+        "spec_list": "data/list/qc_specs.csv"
+    },
+
+    "ingest": {
+        "_comment": "Shared raw-file attachment and post-ingestion retention policy.",
+        "attach_raw": "auto",
+        "attach_raw_max_mb": 25,
+        "archive_mode": "move"
+    },
+
+    "python": {
+        "_comment": "MATLAB<->Python bridge. Unused by this project; left for template parity. See docs/python_integration.md.",
+        "version": "3.10",
+        "execution_mode": "OutOfProcess",
+        "embedded_dir": "python_env",
+        "external_path": "",
+        "proxy": "",
+        "packages": [],
+        "verify_imports": []
+    },
+
+    "output": {
+        "root_dir": "result/intermediate"
+    },
+
+    "run": {
+        "root_dir": "result/runs",
+        "publish_latest": true
+    }
+}

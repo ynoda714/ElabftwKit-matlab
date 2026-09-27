@@ -1,0 +1,17 @@
+# Normalize line endings: LF in the repository, LF in working copies.
+# MATLAB and VS Code handle LF on Windows without issue; this keeps diffs
+# clean when the public repo is cloned on macOS / Linux (PLAN.md M7b-5).
+* text=auto eol=lf
+
+# PowerShell prefers CRLF on Windows.
+*.ps1 text eol=crlf
+
+# Binary artifacts
+*.png binary
+*.jpg binary
+*.mat binary
+*.mlx binary
+*.pdf binary
+
+# Preserve vendored upstream files byte-for-byte, including BOM and CRLF.
+src/third_party/AnyNMR/** -text

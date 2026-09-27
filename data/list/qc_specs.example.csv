@@ -1,0 +1,3 @@
+match_substring,instrument_title,metric,target,tolerance
+xrd_,XRD-01,peak_x,28.44,0.05
+raman_,Raman-01,peak_x,520.7,1.0

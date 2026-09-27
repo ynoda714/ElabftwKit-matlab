@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "matlab-mcp-B": {
+      "command": "C:\\tools\\matlab-mcp\\matlab-mcp-core-server-win64.exe",
+      "args": [
+        "--initial-working-folder", "${workspaceFolder}",
+        "--log-folder", "${workspaceFolder}\\logs\\matlab-mcp",
+        "--matlab-display-mode", "nodesktop",
+        "--log-level", "info",
+        "--disable-telemetry"
+      ]
+    }
+  }
+}

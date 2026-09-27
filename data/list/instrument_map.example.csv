@@ -1,0 +1,8 @@
+match_substring,instrument_id
+xrd_,XRD-01
+raman_,Raman-01
+ftir_,FTIR-01
+nmr_SMP,NMR-01
+nmr_bruker,NMR-02
+lcms_,LCMS-01
+sem_,SEM-01
