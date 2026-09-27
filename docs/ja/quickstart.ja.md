@@ -4,6 +4,8 @@ tracks_english_commit: "424dbf0"
 
 > この日本語訳は英語版より古い場合があります。最新の情報は対応する英語版を参照してください。
 
+[English Quick Start](../quickstart.md)
+
 # Quick Start
 
 このガイドでは、新しいチェックアウトからオフラインプレビュー、または eLabFTW への

@@ -1,5 +1,7 @@
 # Quick Start
 
+[Japanese Quick Start](ja/quickstart.ja.md)
+
 This guide takes you from a new checkout to an offline preview or a complete
 eLabFTW logging run.
 

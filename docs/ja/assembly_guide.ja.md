@@ -4,6 +4,8 @@ tracks_english_commit: "72c5e1c"
 
 > この日本語訳は英語版より古い場合があります。最新の情報は対応する英語版を参照してください。
 
+[English Assembly Guide](../assembly_guide.md)
+
 # 組み立てガイド
 
 ## 原則

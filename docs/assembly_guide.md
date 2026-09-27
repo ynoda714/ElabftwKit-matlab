@@ -1,5 +1,7 @@
 # Assembly Guide
 
+[Japanese Assembly Guide](ja/assembly_guide.ja.md)
+
 ## Principle
 
 `src/` provides parts for reading instrument files, creating records, linking
