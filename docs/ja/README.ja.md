@@ -55,7 +55,7 @@ MATLAB R2022a 以降と eLabFTW インスタンスが必要です。MATLAB の�
 含まれています（Windows、Docker Desktop）。概略: `docker/.env.example` を `docker/.env` にコピーして
 秘密情報を設定し、localhost 用の証明書を作り、`docker` ディレクトリから `docker compose up -d` を実行して
 データベースを初期化し、`https://localhost:3148` で最初のアカウントと API key を作成します。詳しい手順と、
-デモ用の 2 つ目の別サーバーの立て方は [Local eLabFTW setup](../elabftw_setup.md) にあります。
+デモ用の 2 つ目の別サーバーの立て方は [Local eLabFTW setup](elabftw_setup.ja.md) にあります。
 
 ## 現在利用できる機能
 
@@ -106,7 +106,7 @@ MATLAB R2022a 以降と eLabFTW インスタンスが必要です。MATLAB の�
 | 文書 | 目的 |
 |---|---|
 | [Quick Start](quickstart.ja.md) | サーバーを設定し、提供されたワークフローを実行します。 |
-| [Local eLabFTW setup](../elabftw_setup.md) | Docker でローカルの試用サーバーと、別のデモ用サーバーを立てます。 |
+| [Local eLabFTW setup](elabftw_setup.ja.md) | Docker でローカルの試用サーバーと、別のデモ用サーバーを立てます。 |
 | [Demo Guide](../demo_guide.md) | 空のサーバーからデモを再現します。 |
 | [Assembly Guide](assembly_guide.ja.md) | 提供された部品からワークフローを選択または組み立てます。 |
 | [Adding a Format](../adding_a_format.md) | 単一ファイルまたはフォルダ形式の装置形式を追加します。 |

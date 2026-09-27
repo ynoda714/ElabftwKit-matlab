@@ -16,7 +16,7 @@ tracks_english_commit: "424dbf0"
 - MATLAB R2022a 以降。add-on は不要です。
 - Python は不要です。
 - 到達可能な eLabFTW インスタンス。ローカルの Docker 環境については
-  [ローカル eLabFTW のセットアップ](../elabftw_setup.md)に従ってください。
+  [ローカル eLabFTW のセットアップ](elabftw_setup.ja.md)に従ってください。
   この環境は `https://localhost:3148` の self-signed HTTPS を使います。
 - Read/Write API key。`elab.api_key_env` で指定した環境変数
   （既定は `ELAB_API_KEY`）か、`config/apiKey.txt` の 1 行だけに保存します。
@@ -25,7 +25,7 @@ tracks_english_commit: "424dbf0"
 ## セットアップ
 
 1. eLabFTW を起動します。リポジトリのローカル環境では
-   [ローカル eLabFTW のセットアップ](../elabftw_setup.md)に従います。
+   [ローカル eLabFTW のセットアップ](elabftw_setup.ja.md)に従います。
 2. [eLabFTW 情報設計](../elab_structure.md)に記載された Experiment category、
    Experiment status、Resource category、Template を作成します。すべての名前は、
    対応する設定値と 1 文字も違わず一致しなければなりません。

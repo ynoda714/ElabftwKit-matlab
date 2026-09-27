@@ -1,5 +1,7 @@
 # Run a local eLabFTW with Docker (Windows)
 
+[Japanese version](ja/elabftw_setup.ja.md)
+
 Official installation instructions: https://doc.elabftw.net/install.html
 
 This guide uses the repository's `docker/compose.yml` to run a trial environment
