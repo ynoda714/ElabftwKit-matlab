@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-28
+
+First public release. There is no v0.1.0; versioning starts at v0.2.0 by
+project decision and this release folds in everything built and verified
+so far.
+
 Verification status for each feature is recorded in [docs/verification.md](docs/verification.md).
 
 ### Added
@@ -61,7 +67,3 @@ Verification status for each feature is recorded in [docs/verification.md](docs/
   sidecar from being overwritten.
 
 ---
-
-<!-- ## [v0.1.0] - YYYY/MM/DD -->
-<!-- ### Added -->
-<!-- - First working pass against a local eLabFTW instance -->
